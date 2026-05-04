@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - AI Vault</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">🤖 AI Vault Admin</div>
+            <div class="nav-menu">
+                <button class="btn btn-secondary" onclick="goToHome()">← Home</button>
+                <button class="btn btn-secondary" onclick="window.location.href='dashboard.html'">📊 Dashboard</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel">
+        <!-- Sidebar Navigation -->
+        <aside class="admin-sidebar">
+            <div class="admin-header">
+                <h2>⚙️ Admin Panel</h2>
+            </div>
+            <nav class="admin-nav">
+                <button class="admin-nav-item active" onclick="switchAdminTab('dashboard')">
+                    <span>📊</span> Dashboard
+                </button>
+                <button class="admin-nav-item" onclick="switchAdminTab('content')">
+                    <span>📝</span> Add Content
+                </button>
+                <button class="admin-nav-item" onclick="switchAdminTab('manage')">
+                    <span>📋</span> Manage Content
+                </button>
+                <button class="admin-nav-item" onclick="switchAdminTab('users')">
+                    <span>👥</span> Users
+                </button>
+                <button class="admin-nav-item" onclick="switchAdminTab('settings')">
+                    <span>⚙️</span> Settings
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Dashboard Tab -->
+            <div id="dashboard-tab" class="admin-tab active">
+                <div class="tab-header">
+                    <h2>Admin Dashboard</h2>
+                    <p>Manage your AI Vault platform</p>
+                </div>
+
+                <div class="admin-stats">
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon">📝</div>
+                        <div class="admin-stat-info">
+                            <div class="admin-stat-value" id="totalContent">0</div>
+                            <div class="admin-stat-label">Total Content Items</div>
+                        </div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon">👥</div>
+                        <div class="admin-stat-info">
+                            <div class="admin-stat-value">4</div>
+                            <div class="admin-stat-label">Active Users</div>
+                        </div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon">💰</div>
+                        <div class="admin-stat-info">
+                            <div class="admin-stat-value">$1.2K</div>
+                            <div class="admin-stat-label">Monthly Revenue</div>
+                        </div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon">⭐</div>
+                        <div class="admin-stat-info">
+                            <div class="admin-stat-value">4.8</div>
+                            <div class="admin-stat-label">Platform Rating</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Tab -->
+            <div id="content-tab" class="admin-tab">
+                <div class="tab-header">
+                    <h2>Add New Content</h2>
+                    <p>Create new content items for your library</p>
+                </div>
+
+                <form class="admin-form" onsubmit="submitContent(event)">
+                    <div class="form-group">
+                        <label>Content Title *</label>
+                        <input type="text" id="contentTitle" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Category *</label>
+                            <select id="contentCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="guide">Guide</option>
+                                <option value="tutorial">Tutorial</option>
+                                <option value="tips">Tips</option>
+                                <option value="blog">Blog</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Content Type *</label>
+                            <select id="contentType" required>
+                                <option value="">Select Type</option>
+                                <option value="free">Free</option>
+                                <option value="premium">Premium</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="contentDesc" rows="4"></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Icon</label>
+                            <input type="text" id="contentIcon" placeholder="E.g., 📚">
+                        </div>
+                        <div class="form-group">
+                            <label>Views</label>
+                            <input type="number" id="contentViews" value="0">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Content URL</label>
+                        <input type="text" id="contentUrl" placeholder="https://example.com">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">➕ Add Content</button>
+                </form>
+
+                <!-- Preview -->
+                <div class="content-preview">
+                    <h3>Preview</h3>
+                    <div id="previewContent" class="preview-placeholder">Your content preview will appear here</div>
+                </div>
+            </div>
+
+            <!-- Manage Content Tab -->
+            <div id="manage-tab" class="admin-tab">
+                <div class="tab-header">
+                    <h2>Manage Content</h2>
+                    <p>Edit, delete, or view your content items</p>
+                </div>
+
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Type</th>
+                                <th>Views</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="contentTableBody">
+                            <tr>
+                                <td colspan="5" style="text-align: center; padding: 2rem; color: #a0a0a0;">Loading content...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Users Tab -->
+            <div id="users-tab" class="admin-tab">
+                <div class="tab-header">
+                    <h2>User Management</h2>
+                    <p>View and manage platform users</p>
+                </div>
+
+                <div id="usersGrid" class="users-grid"></div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="settings-tab" class="admin-tab">
+                <div class="tab-header">
+                    <h2>Platform Settings</h2>
+                    <p>Configure your platform settings</p>
+                </div>
+
+                <form class="admin-form" onsubmit="saveSettings(event)">
+                    <h3>General Settings</h3>
+                    <div class="form-group">
+                        <label>Platform Name</label>
+                        <input type="text" id="platformName" value="AI Vault">
+                    </div>
+                    <div class="form-group">
+                        <label>Platform Description</label>
+                        <textarea id="platformDesc" rows="3"></textarea>
+                    </div>
+
+                    <h3 style="margin-top: 2rem;">Pricing Settings</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Pro Plan Price ($/month)</label>
+                            <input type="number" id="proPlanPrice" value="9.99" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label>Free Plan Limit</label>
+                            <input type="number" id="freePlanLimit" value="5">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Pro Plan Limit</label>
+                            <input type="number" id="proPlanLimit" value="100">
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: 2rem;">Contact Settings</h3>
+                    <div class="form-group">
+                        <label>Support Email</label>
+                        <input type="email" id="supportEmail" placeholder="support@aivault.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Notification Email</label>
+                        <input type="email" id="notificationEmail" placeholder="notifications@aivault.com">
+                    </div>
+
+                    <h3 style="margin-top: 2rem;">Features</h3>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" id="imageGenEnabled" checked>
+                            Image Generator
+                        </label>
+                        <label>
+                            <input type="checkbox" id="blogWriterEnabled" checked>
+                            Blog Writer
+                        </label>
+                        <label>
+                            <input type="checkbox" id="studyTimerEnabled" checked>
+                            Study Timer
+                        </label>
+                        <label>
+                            <input type="checkbox" id="wellnessEnabled" checked>
+                            Wellness Breaks
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="margin-top: 2rem;">💾 Save Settings</button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>✅ Success</h3>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage">Operation completed successfully!</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

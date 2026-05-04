@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Vault - Your AI-Powered SaaS Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">🤖 AI Vault</div>
+            <div class="nav-menu">
+                <a href="#tools">Tools</a>
+                <a href="#content">Content Library</a>
+                <a href="#pricing">Pricing</a>
+                <button class="btn btn-primary" onclick="window.location.href='dashboard.html'">Get Started</button>
+                <button class="btn btn-secondary" onclick="window.location.href='admin.html'">Admin</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Welcome to <span class="gradient-text">AI Vault</span></h1>
+                <p class="hero-subtitle">Your complete AI-powered SaaS platform with tools, content library, and premium features</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">6+</div>
+                        <div class="stat-label">AI Tools</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">1000+</div>
+                        <div class="stat-label">Content Items</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <button class="btn btn-large btn-primary" onclick="window.location.href='dashboard.html'">🚀 Get Started Free</button>
+                    <button class="btn btn-large btn-outline" onclick="document.getElementById('tools').scrollIntoView({behavior: 'smooth'})">📚 Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="tools-section">
+        <div class="container">
+            <h2 class="section-title">🎯 Our AI Tools</h2>
+            <p class="section-subtitle">Powerful AI-powered tools to boost your productivity</p>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">🎨</div>
+                    <h3>Image Generator</h3>
+                    <p>Create stunning AI-generated images from text prompts in seconds</p>
+                    <button class="btn btn-small" onclick="window.location.href='dashboard.html'">Try Now</button>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">📝</div>
+                    <h3>Blog Writer</h3>
+                    <p>Generate high-quality blog posts with AI assistance</p>
+                    <button class="btn btn-small" onclick="window.location.href='dashboard.html'">Try Now</button>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">📌</div>
+                    <h3>Smart Notes</h3>
+                    <p>Take notes and get AI-powered summaries automatically</p>
+                    <button class="btn btn-small" onclick="window.location.href='dashboard.html'">Try Now</button>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">📱</div>
+                    <h3>Caption Generator</h3>
+                    <p>Create engaging captions for social media instantly</p>
+                    <button class="btn btn-small" onclick="window.location.href='dashboard.html'">Try Now</button>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">⏱️</div>
+                    <h3>Study Timer</h3>
+                    <p>Pomodoro-style timer to boost focus and productivity</p>
+                    <button class="btn btn-small" onclick="window.location.href='dashboard.html'">Try Now</button>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">🧘</div>
+                    <h3>Wellness Breaks</h3>
+                    <p>Guided breaks with meditation, stretching, and breathing exercises</p>
+                    <button class="btn btn-small" onclick="window.location.href='dashboard.html'">Try Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Library Section -->
+    <section id="content" class="content-section">
+        <div class="container">
+            <h2 class="section-title">📚 Content Library</h2>
+            <p class="section-subtitle">Browse and search our growing library of resources</p>
+            
+            <!-- Search and Filters -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search content..." class="search-input" oninput="filterContent()">
+                <select id="categoryFilter" class="filter-select" onchange="filterContent()">
+                    <option value="">All Categories</option>
+                    <option value="guide">Guide</option>
+                    <option value="tutorial">Tutorial</option>
+                    <option value="tips">Tips</option>
+                </select>
+                <select id="typeFilter" class="filter-select" onchange="filterContent()">
+                    <option value="">All Types</option>
+                    <option value="free">Free</option>
+                    <option value="premium">Premium</option>
+                </select>
+            </div>
+
+            <!-- Content Grid -->
+            <div id="contentGrid" class="content-grid"></div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <h2 class="section-title">💰 Choose Your Plan</h2>
+            <p class="section-subtitle">Start free, upgrade when you need more</p>
+            
+            <div class="pricing-grid">
+                <!-- Free Plan -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Free</h3>
+                        <div class="pricing-price">$0<span>/month</span></div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature">✓ 5 AI generations/month</div>
+                        <div class="feature">✓ Basic tools</div>
+                        <div class="feature">✓ Community access</div>
+                        <div class="feature">✗ Premium content</div>
+                        <div class="feature">✗ Priority support</div>
+                    </div>
+                    <button class="btn btn-large btn-outline">Get Started</button>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Pro</h3>
+                        <div class="pricing-price">$9.99<span>/month</span></div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature">✓ Unlimited generations</div>
+                        <div class="feature">✓ All tools + advanced</div>
+                        <div class="feature">✓ Premium content access</div>
+                        <div class="feature">✓ Priority support</div>
+                        <div class="feature">✓ Monthly templates</div>
+                    </div>
+                    <button class="btn btn-large btn-primary">Upgrade to Pro</button>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Enterprise</h3>
+                        <div class="pricing-price">Custom<span>/month</span></div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature">✓ Unlimited everything</div>
+                        <div class="feature">✓ Custom integrations</div>
+                        <div class="feature">✓ Dedicated support</div>
+                        <div class="feature">✓ Custom tools</div>
+                        <div class="feature">✓ White-label option</div>
+                    </div>
+                    <button class="btn btn-large btn-outline">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>AI Vault</h4>
+                    <p>Your complete AI-powered SaaS platform</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#tools">Tools</a>
+                    <a href="#content">Content</a>
+                    <a href="#pricing">Pricing</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI Vault. All rights reserved. | Made with ❤️</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
